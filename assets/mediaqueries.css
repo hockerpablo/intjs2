@@ -1,0 +1,77 @@
+@media (min-width: 302px) and (max-width: 767px){
+
+.contenedor_paginas{
+    position: absolute;
+    top: 100px;
+    right: 30px;
+    left: 30px;
+    display: block;
+    text-align: center;
+    background-color: var(--apple);
+    border-radius: 0 0 8px 8px;
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease 0s;
+}
+
+.icono_menu_desplegable{
+    position: relative;
+    width: 49px;
+    height: 50px;
+    padding: 12px  8px;
+}
+.desplegable_linea{
+    position: absolute;
+    width: 34px;
+    height: 3px;
+    background-color: black;
+    border-radius: 5px;
+    transition: all 0.5s ease 0s;
+}
+.desplegable_linea_uno{
+    top: 15px;
+}
+.desplegable_linea_dos{
+    top: 23px;
+}
+.desplegable_linea_tres{
+  top: 31px;  
+}
+.desplegar_menu{
+    display: block;
+    padding-top: 30px;
+    height: 10em;
+    overflow: hidden;
+}
+.desplegar_menu a{
+    display: block;
+    padding: 5px;
+    overflow: hidden;
+}
+
+.rotar_linea_uno{
+transform: translateY(8px) rotateZ(45deg);
+}
+.eliminar_linea_dos{
+width: 0;
+}
+.rotar_linea_tres{
+transform: translateY(-8px) rotateZ(-45deg);
+}
+}
+
+
+@media (min-width: 768px) and (max-width: 991px){
+
+}
+
+@media (min-width:992px) and (max-width:1199px){
+
+}
+
+@media (min-width:1200px) and (max-width:1439px){
+
+}
+
+@media (min-width:1440px)

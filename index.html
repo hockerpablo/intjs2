@@ -3,36 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href=".assets/style.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/mediaqueries.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>hey_applesell</title>
+    
 </head>
 <body>
-    <header>
-        <!-- aca empeza el header-->
-        <img src="./assets/img/logo.jpg" alt="Logo de hey_applesell" class="logo">
-        <nav class="navbar">
-            <div class="menu-label">
-                <i class="fa-solid fa-bars-staggered"></i>
+   <header>
+    <div class="overlay"></div>
+   <nav>
+<!--------------------SECCION MENU ------------------------>
+    <div id="contenedor_menu">
+
+        <div id="contenedor_hijo_menu">
+
+            <div id="contenedor_menu_logo">
+                <div id="logo_menu">
+                  <img src="./assets/img/logo.jpg" alt="Logo de hey_applesell" class="logo">
+                </div>
+           </div>
+
+           <div class="contenedor_paginas">
+                <a href="#" class="enlace"><p class="pagina"> INICIO </p> </a>
+                <a href="#" class="enlace"><P class="pagina"> ABOUT US </P> </a>
+                <a href="#productos" class="enlace"> <P class="pagina"> PRODUCTOS </P> </a>
+                <a href="#" class="enlace"><P class="pagina"> CONTACTO </P> </a>
+           </div>
+           <div class="icono_menu_desplegable">
+            <div class="desplegable_linea desplegable_linea_uno"></div>
+            <div class="desplegable_linea desplegable_linea_dos"></div>
+            <div class="desplegable_linea desplegable_linea_tres"></div>
+         </div>
+         <div class="icono_carrito">
+          <img src="assets/img/carrito-de-compras.png" alt="carrito de compras">
+          <div class="carrito_bubble">0</div>
+         </div>
+        </div>
+
+        <!------------------------CARRITO DE COMPRAS------------------------>
+        <div class="carrito">
+           <h3>Resumen de compras</h3>
+           <hr>
+           <div class="carrito_contenedor">
+             <div class="carrito_total">
+              <p>Total</p>
+              <span class="total"> 0 </span>
             </div>
-            <ul class="navbar-list">
-                <li><a href="#hero" class="navbar-link" >Home</a></li>
-                <li><a href="#about us" class="navbar-link" >About us</a></li>
-                <li><a href="#products" class="navbar-link" >notebooks</a></li>
-                <li><a href="#Smartphones" class="navbar-link">Smartphones</a></li>
-            </ul>
-              <div class="cart-label">
-        
-                <i class="fa-solid fa-cart-shopping cart-icon">
-                  <div class="cart-bubble">0</div>
-                </i>
-              </div>
-        
-        </nav>
+            <button class="boton_comprar">Comprar</button>
+            <button class="boton_borrar">Borrar</button> 
+           </div>
+          
+        </div>
+    </div>
+</nav>
+
+   </header>
+    <main>
+
+      <!-------------------------------SECCION HERO -------------------------------->
+      <div id="hero">
+        <div class="hero_info">
+          <h1>Somos hey_applesell</h1>
+          <p> somo het_applesell una empresa creada en hace mas de 10 años 
+            ya instalados en 3 provicias de la argentina con sede original en santa fe
+            le brindamos el mejor servicio de entrega a nuesros mas de 3 mil clientes en todo el pais 
+            siempre apostamos a la inovacion tecnogica dentro del campo de la informatica lo dicen nuesros partners.
+          </p>
+        </div>
+        <div class="container-slider">
+            <div class="slider-izquierda">
+              <img src="assets/img/slideshow/izquierda.png" alt="">
+            </div>
+            <div class="slider-screen">
+              <img name="imagen" alt="imagen de slide">
+            </div>
+            <div class="slider-derecha">
+              <img src="assets/img/slideshow/derecha.png" alt="">
+            </div>
+            
+        </div>
+      </div>
+
+      <!---------------------SECCION PRODUCTOS -------------------------->
+
+      <section id="productos">
+        <h1>Productos</h1>
+
+        <!-------------------FILTROS-------------------------->
+
+        <div class="categorias">
+          <button class="categoria activa">Todas las categorias</button>
+         <button class="categoria" data-category="Notebooks"> Notebooks </button>
+         <button class="categoria" data-category="Placas de video"> Placas de video </button>
+         <button class="categoria" data-category="Celulates"> Celulares </button>
+
+         
+
+          <div class="contenedor_productos">
+            
+            <!---<div class="caja_hijo caja_dos">
+              <img name="product_slide_2" alt="">
+              <h3>Asus rog strix rtx4090</h3>
+              <button>Comprar</button>
+            </div>
+            <div class="caja_hijo caja_tres">
+              <img name="product_slide_3" alt="">
+              <h3>Asus tuf rtx 4070ti</h3>
+              <button>Comprar</button>
+            </div>-->
+           </div>
+
+         
 
 
-    </header>
-    <script src=".assets/script.js"></script>
-    <script src=".assets/data.js"></script>
+        </div>
+           <button class="boton_cargar"> Ver +</button>
+      </section>
+    </main>
+    <div class="add_modal"></div>
+    <script src="./assets/slider.js"></script>
+    <script src="./assets/navbar.js"></script>
+    <script src="./assets/script.js"></script>
+    <script src="./assets/data.js"></script>
 </body>
 </html>
