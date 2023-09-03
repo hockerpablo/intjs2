@@ -18,14 +18,14 @@ const productsData = [
         name: "Asus TUF A15 AMD Ryzen 7 4800H 512gb-ram16gb NVIDIA GeForce RTX 3050TI",
         value: "1.096.000",
         category: "notebooks",
-        cardImg:"assets/img/products/asus tuf f15/1.jpg",
+        cardImg:"assets/img/products/asus tuf f15/1.jpeg",
     },
     {
         id: 4,
         name:"ASUS TUF Gaming NVIDIA GeForce RTX™ 4070 Ti OC Edition",
         value:"799.000",
         category:"Placas de video",
-        cardImg:"assets/img/products/asus tuf rtx 4070ti/1.jpg",
+        cardImg:"assets/img/products/asus rtx4070ti/1.jpg",
     },
     {
         id: 5,
@@ -74,11 +74,10 @@ const divideProductsInParts = (size) => {
 }
 
 const appState  = {
- products: divideProductsInParts(3),
- currentProductsIndex: 0,
- productsLimit: divideProductsInParts(3).length,
- activeFilter: null
+    products: divideProductsInParts(3),
+    currentProductsIndex: -1,
+    productsLimit: divideProductsInParts(3).length,
+    activeFilter: null
 }
 
 
-//ver video 17 en el minuto 44

@@ -10,7 +10,7 @@ const carritoBubble = document.querySelector('.carrito_bubble')
 const addModal = document.querySelector('.add_modal')
 
 //seteamos el carrito
- let carrito = JSON.parse (localStorage.getItem("carrito")) || []
+ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
  const createProductTemplate = (products) =>{
     const {id, name, value, cardImg} = products;
@@ -25,12 +25,13 @@ const addModal = document.querySelector('.add_modal')
               data-name="${name}" 
               data-value="${value}" 
               data-img="${cardImg}">Comprar</button>
-            </div>`
+            </div>`;
  };
 //aca estamos trabajando dentro del products container
  const renderProducts = (productsList) =>{
-    productosCont.innerHTML += productsList.map(createProductTemplate) .join('');
- }
+    productosCont.innerHTML += productsList.map
+    (createProductTemplate) .join('');
+ };
 
 
  //ver mas
@@ -40,7 +41,7 @@ const isLastIndexOf = () =>{
 };
 
 const verMasProductos = () =>{
-    appState.currentProductsIndex += 1;
+    appState.currentProductsIndex += 1; //le saque una a
     let{products, currentProductsIndex}  = appState;
     renderProducts(products[currentProductsIndex]);
     if(isLastIndexOf()){
@@ -118,16 +119,16 @@ renderProducts(filteredProducts);
 
 
 const createCartProductTemplate = (productcart) =>{
-    const {id,name,value,img,quantity} = productcart
+    const {id, name, value, cardImg, quantity} = productcart
     return`<div class="item_carrito">
-    <img src=${img} alt="carrito" />
+    <img src=${cardImg} alt="carrito" />
     <div class="item_info">
       <h3 class="item_titulo">${name}</h3>
       <p class="item_valor">el precio es</p>
       <span class="item_precio"> $ ${value} </span>
     </div>
     <div class="item_handler">
-      <span class="quantity_handler_down" data_id=${id}>-</span>
+      <span class="quantity_handler down" data_id=${id}>-</span>
       <span class="item_cantidad">${quantity}</span>
       <span class="quantity_handler up" data-id=${id}>+</span>
     </div>
@@ -148,7 +149,7 @@ const renderCart = () => {
 
 const totalDeLacompra = () =>{
     return carrito.reduce((cantidad, valor ) => 
-    cantidad + numero(valor.value) * valor.quantity, 0)
+    cantidad + Number(valor.value) * valor.quantity, 0)
 }
 
 //funcion para mostrar el total
@@ -213,12 +214,12 @@ const agregarUnidad = (product) =>{
     };
 
 const createCartPorduct = (product) => {
-    carrito=[...cart, {...product, quantity :1 }]
+    carrito=[...carrito, {...product, quantity :1 }]
 }
 
 // funcion para mostrar modal  de exito 
 
-const mostrarModal = () =>{
+const mostrarModal = (msg) =>{
     addModal.classList.add('activar_modal');
     addModal.textContent = msg
     setTimeout(() =>{
@@ -237,20 +238,95 @@ const agregarAlCarrito = (e) =>{
         mostrarModal('el producto se a agregado')
     }
     updateCartState()
+};
+
+//funcion para agregar mas productos al carrito
+
+const handlePlusBtnEvent = (id) =>{
+    const existeArticuloEnElcarrito= carrito.find((item) => item.id === id)
+    agregarUnidad(existeArticuloEnElcarrito)
 }
 
-//funcion para agregar mas de cada producto
+//funcion para restar un producto al carrito
 
+const handleMinusBtnEvent = (id) =>{
+    const existeArticuloEnElcarrito = carrito.find ((item) => item.id=== id)
+    if (existeArticuloEnElcarrito.quantity === 1){
+        if (window.confirm("desea eliminar producto??")){
+            removerProductoDelCarrito(existeArticuloEnElcarrito)
+        }
+        return;
+    }
+    sustrerUnidad(existeArticuloEnElcarrito)
+}
+
+const removerProductoDelCarrito =(product) =>{
+    carrito = carrito.filter ((item) => item.id !== product.id)
+    updateCartState()
+}
+
+const restarUnidad = (product) =>{
+    carrito = carrito.map ((item) =>{
+        return item.id === product.id ?
+        {...item, quantity: Number(item.quantity) - 1}
+    : item })
+}
+
+
+//funcion para maejar los eventos al pareter el boton mas o menos del item del carrito
+
+const handleQuantity = (e) =>{
+    if (e.target.classList.contains("down")){
+        handleMinusBtnEvent(e.target.dataset.id)
+    } else if (e.target.classList.contains("up")){
+        handlePlusBtnEvent(e.target.dataset.id)
+    }
+    updateCartState()
+}
+
+//funcion para vaciar el carrito
+
+const resetCartItems = () =>{
+    carrito = []
+  updateCartState()
+}
+
+//funcion para completar la compra o vaciar el carrito
+
+const completeCartAction = (confirmMsg, successMsg) =>{
+    if(!cart.length) 
+    return;
+if(window.confirm(confirmMsg)){
+    resetCartItems()
+    alert(successMsg)
+ }
+}
+
+//funcion disparar un mensaje de compra exitosa
+
+const completeBuy = () =>{
+    completeCartAction("desea completar su compra?", "¡gracias por su compra!")
+}
+
+//funcion para disparar el mesanje de borra los items del carrito
+
+const deleteCart = () =>{
+    completeCartAction("desea vaciar el carrito?", "¡no hay productos en el carrito!")
+}
 
 
 const init = () =>{
-    renderProducts(appState.products[0]);
-    botonVerMas.addEventListener("click", verMasProductos);
-    contenedorDeCategorias.addEventListener('click', applyFilter);
-    document.addEventListener("DOMContentLoaded", renderCart);
-    document.addEventListener("DOMContentLoaded", mostrarTotal);
-    productosCont.addEventListener("click", agregarAlCarrito);
-    //productosCarrito.addEventListener("click", )
-
+    renderProducts(appState.products[0])
+    botonVerMas.addEventListener("click", verMasProductos)
+    contenedorDeCategorias.addEventListener('click', applyFilter)
+    document.addEventListener("DOMContentLoaded", renderCart)
+    document.addEventListener("DOMContentLoaded", mostrarTotal)
+    productosCont.addEventListener("click", agregarAlCarrito)
+    productosCarrito.addEventListener("click", handleQuantity)
+    botonComprar.addEventListener("click", completeBuy)
+    botonBorrar.addEventListener("click", deleteCart)
+    disableBtn(botonComprar)
+    disableBtn(botonBorrar)
+    renderCartBubble(carrito)
 }
 init()

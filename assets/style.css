@@ -143,24 +143,17 @@
         font-size: 20px;
         box-shadow: none;
       }
-      .carrito_contenedor{
-
-      }
-      .carrito_total{
-
-      }
-
-      .total{
-
+      .item_carrito img{
+        max-width: 90px;
       }
 
       .desplegar_carrito{
-        max-width: 1600px;
+        max-width: 100%;
         position: absolute;
         top: 110px;
         left: 30px;
         padding: 0;
-        height: 10em;
+        height: 500px;
         transition: all 0.5s ease 0s;
       }
 
@@ -261,7 +254,7 @@
         background-color: black;
       } 
 
-      .caja_padre img{
+      .products img{
         width: 200px;
         align-items: center;
         border-radius: 15px;
@@ -269,13 +262,14 @@
         top: 1rem;
       }
 
-      .caja_hijo{
+      .products{
         width: 300px;
         height: 360px;
         border-radius: 12px;
         background-color: var(--apple3);
       }
-      .caja_hijo button{
+      
+      .products button{
         border-radius: 10px;
         box-shadow: rgba(208, 87, 87, 0.559);
         width: 120px;
@@ -283,7 +277,7 @@
         position: relative;
         top: 15px;
       }
-      .caja_hijo h3{
+      .products h3{
         font-size: 15px;
         position: relative;
         width: 260px;
