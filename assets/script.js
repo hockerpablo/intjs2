@@ -1,8 +1,6 @@
 const productosCont = document.querySelector('.contenedor_productos')
 const productosCarrito = document.querySelector('.carrito_contenedor')
 const total = document.querySelector('.carrito_total')
-const contenedorDeCategorias = document.querySelector('.categorias')
-const listaDeCategorias = document.querySelectorAll('.categoria')
 const botonVerMas = document.querySelector('.boton_cargar')
 const botonComprar = document.querySelector('.boton_comprar')
 const botonBorrar = document.querySelector('.boton_borrar')
@@ -12,8 +10,8 @@ const addModal = document.querySelector('.add_modal')
 // seteamos el carrito
  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
- const createProductTemplate = (products) =>{
-    const {id, name, value, cardImg} = products;
+ const createProductTemplate = (productos) =>{
+    const {id, name, value, cardImg, category} = productos;
     return `
     <div class="products">
               <img src='${cardImg}' alt="">
@@ -21,6 +19,7 @@ const addModal = document.querySelector('.add_modal')
               <span>PRECIO</span>
               <span>${value}</span>
               <button class="boton_comprar" 
+              data-category="${category}"
               data-id="${id}" 
               data-name="${name}" 
               data-value="${value}" 
@@ -33,7 +32,7 @@ const addModal = document.querySelector('.add_modal')
 
 
  // ver mas
-
+ 
 const isLastIndexOf = () =>{
     
     return appState.currentProductsIndex === appState.productsLimit -1;
@@ -41,7 +40,7 @@ const isLastIndexOf = () =>{
 
 const verMasProductos = () =>{
    
-    appState.currentProductsIndex += 1; //le saque una a
+    appState.currentProductsIndex += 1; 
     let{products, currentProductsIndex}  = appState;
     renderProducts(products[currentProductsIndex]);
    
@@ -61,87 +60,26 @@ const setShowMoreVisibility = () =>{
     botonVerMas.classList.add("hidden")
 }
 
-// los filtros
-
-const cambiarEstadoActivoBoton = (seleccionarCategoria)=>{
-    const categorias = [...listaDeCategorias];
-    categorias.forEach((botonDeCategoria) =>{
-        
-        if(botonDeCategoria.dataset.categoria !== seleccionarCategoria){
-            botonDeCategoria.classList.remove("activa");
-            
-            return;
-        }
-        botonDeCategoria.classList.add("activa");
-    })
-}
-
-// funcion para cambiar el estado del filtro activo
-
-
-const cambiarFiltroDeEstado = (boton) =>{
-    appState.activeFilter = boton.dataset.categoria
-    cambiarEstadoActivoBoton(appState.activeFilter)
-    setShowMoreVisibility(appState.activeFilter)
-}
-
-// funcion para saber o no si esta activo el boton qeu se apreto
-
-const isInactiveFilterBtn = (elemento) =>{
-    
-    return(
-        elemento.classList.contains("categoria") && !elemento.classList.contains("activa")
-    )
-}
-
-
-// funcion para plicar filtro cuadno se apreta un boton de categoria
-   
-
-const applyFilter = (event) =>{
-    const {target} = event
-    
-    if(!isInactiveFilterBtn(target)) return;
-
-    productosCont.innerHTML = "";
-    
-    if(appState.activeFilter){
-        renderFilteredProducts();
-        appState.currentProductsIndex = 0;
-        
-        return;
-    }
-    renderProducts(appState.products[0])};
-
-    // funcion para renderizar los productos
-
-const renderFilteredProducts = () =>{
-    const filteredProducts = productsData.filter(        ////luego ver el filtered products
-        (product) => product.category === appState.activeFilter); 
-
-renderProducts(filteredProducts);
-};
-
 // logica del carrito
 
 const createCartProductTemplate = (productosCarrito) =>{
     const {id, name, value, img, quantity} = productosCarrito;
     return`<div class="item_carrito">
     <img src='${img}' alt="carrito" />
-    <div class="item_info">
-      <h3 class="item_titulo">${name}</h3>
-      <p class="item_bid">el precio es</p>
-      <span class="item_precio"> $ ${value} </span>
+    <div class="item-info">
+      <h3 class="item-titulo">${name}</h3>
+      <p class="item-bid">el precio es</p>
+      <span class="item-precio"> $ ${value} </span>
     </div>
-    <div class="item_handler">
-      <span class="quantity_handler down" data_id=${id}>-</span>
-      <span class="item_quantity">${quantity}</span>
-      <span class="quantity_handler up" data-id=${id}>+</span>
+    <div class="item-handler">
+      <span class="quantity-handler down" data-id=${id}>-</span>
+      <span class="item-quantity">${quantity}</span>
+      <span class="quantity-handler up" data-id=${id}>+</span>
       
     </div>
   </div>`;
 }
-// funcion para renderizar los productos del carrito o para poner el mensaje de no hay
+// funcion para renderizar los productos del carrito 
 
 const renderCart = () => {
     
@@ -263,7 +201,7 @@ const handlePlusBtnEvent = (id) =>{
 
 
 
-const handleMinusBtnEvent = (id) =>{ //no funciona el menos esta no anda
+const handleMinusBtnEvent = (id) =>{ 
     
     const existeArticuloEnElcarrito = carrito.find ((item) => item.id === id)
     
@@ -275,7 +213,7 @@ const handleMinusBtnEvent = (id) =>{ //no funciona el menos esta no anda
     
         return;
     }
-    sustrerUnidad(existeArticuloEnElcarrito)
+    restarUnidad(existeArticuloEnElcarrito)
 }
 
 
@@ -340,7 +278,6 @@ const deleteCart = () =>{
 const init = () =>{
     renderProducts(appState.products[0])
     botonVerMas.addEventListener("click", verMasProductos)
-    contenedorDeCategorias.addEventListener('click', applyFilter)
     document.addEventListener("DOMContentLoaded", renderCart)
     document.addEventListener("DOMContentLoaded", mostrarTotal)
     productosCont.addEventListener("click", agregarAlCarrito)

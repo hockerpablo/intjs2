@@ -84,7 +84,7 @@ const divideProductsInParts = (size) => {
 
 const appState  = {
     products: divideProductsInParts(3),
-    currentProductsIndex: 0,
+    currentProductsIndex: 0, // esto es la posicion  actual de las listas
     productsLimit: divideProductsInParts(3).length,
     activeFilter: null
 }

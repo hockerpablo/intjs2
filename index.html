@@ -94,36 +94,86 @@
 
         <!-------------------FILTROS-------------------------->
 
-        <div class="categorias">
-          <button class="categoria activa">Todas las categorias</button>
-         <button class="categoria" data-categoria="Notebooks"> Notebooks </button>
-         <button class="categoria" data-categoria="Placas de video"> Placas de video </button>
-         <button class="categoria" data-categoria="Celulates"> Celulares </button>
 
-         
+        <div class="categories">
+          <button class="category active">Todas</button>
+          <button class="category" data-category="notebooks">Notebooks</button>
+          <button class="category" data-category="Placas de video">Placas de video</button>
+          <button class="category" data-category="Smartphones">Telefonos inteligentas</button>
+          
+        </div>
 
           <div class="contenedor_productos">
             
-            <!---<div class="caja_hijo caja_dos">
-              <img name="product_slide_2" alt="">
-              <h3>Asus rog strix rtx4090</h3>
-              <button>Comprar</button>
-            </div>-->
-
+          
            </div>
 
-         
-
-
-        </div>
            <button class="boton_cargar"> Ver +</button>
       </section>
+      <div class="add_modal"></div>
     </main>
-    <div class="add_modal"></div>
+    <section id="contacts">
+      <h1> Nuestros Contactos </h1>
+<div class="contacts_info">
+  <div class="contact_box1">
+      <h2>Buscanos En</h2>
+      <ul>
+          <li><i class="fa-solid fa-location-dot"></i><a href=""></a>San Martin 202 </li>
+          <li><i class="fa-solid fa-phone-volume"></i><a href="tel:+5403514982257">Telefono de contacto</a></li>
+          <li><i class="fa-solid fa-at"></i><a href="mailto:spartanmk05@gmail.com" target="_blank">Nuestro Correo</a></li>
+      </ul>
+  </div>
+  <div class="contact_box2">
+      <h2>Tu Cuenta</h2>
+      <div class="content_form">
+       <form class="form_container" id="regitrar">
+        
+        <!---nombre-->
+        <div class="form_filed">
+          <input type="text" placeholder="Nombre" class="form_input" id="nombre" autocomplete="off"/>
+        </div>
+        <small></small>
+       <!-- apellido-->
+       <div class="form_filed">
+        <input type="text" placeholder="Apellido" class="form_input" id="apellido" autocomplete="off"/>
+      </div>
+        <small></small>
+      <!--numero de telefono-->
+      <div class="form_filed">
+        <input type="number" placeholder="Telefono" class="form_input" id="telefono" autocomplete="off"/>
+      </div>
+        <small></small>
+      <!-- email -->
+      <div class="form_filed">
+        <input type="email" placeholder="Correo" class="form_input" id="email" autocomplete="off"/>
+      </div>
+      <input type="submit" class="form_submit_btn" value="registrarse"/>
+       </form>
+
+      </div>
+  </div>
+       <!-- redes sociales -->
+  <div class="redes">
+      <h2>Nuestras Redes</h2>
+      <i class="fa-brands fa-facebook"></i>
+      <i class="fa-brands fa-tiktok"></i>
+      <i class="fa-brands fa-instagram"></i>
+  </div>
+</div>
+  </section>
+  </main> 
+  <footer>
+      <div class="footer">
+          <img src="assets/logo de ph productions.png" alt="">
+          <h2>Producido por ph productions</h2>
+      </div>
+  </footer> 
+    
     <script src="./assets/data.js"></script>
     <script src="./assets/slider.js"></script>
     <script src="./assets/navbar.js"></script>
     <script src="./assets/script.js"></script>
-    
+    <script src="./assets/filtros.js"></script>
+    <script src="./assets/formulario.js"></script>
 </body>
 </html>

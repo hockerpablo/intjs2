@@ -86,7 +86,7 @@
       
       
       .contenedor_paginas { /* ESTE ES EL CONTENEDOR QUE HAREMOS DESPLEGABLE */
-        display: block;
+        display: flex;
         justify-content: flex-end;
         align-items: center;
         flex: 1;
@@ -153,8 +153,9 @@
         top: 110px;
         left: 30px;
         padding: 0;
-        height: 100%;
+        height: 80%;
         transition: all 0.5s ease 0s;
+        overflow: scroll;
       }
 
   
@@ -225,6 +226,16 @@
         width: 100%;
         flex:1;
       }
+      /*--------------------------FILTROS------------------------*/
+      
+      .espacio{
+        padding: 1rem;
+      }
+      .active{
+        color: #6c1c04;
+      }
+      
+
 
       /*--------------------------PRODUCTOS-----------------------*/
 
@@ -269,6 +280,7 @@
         background-color: var(--apple3);
       }
       
+      
       .products button{
         border-radius: 10px;
         box-shadow: rgba(208, 87, 87, 0.559);
@@ -285,4 +297,154 @@
         top: 35px;
         background-color: var(--apple);
       }
-      
+
+      .hidden{
+        display: none;
+      }
+      /*--------------------------------------CONTACTOS----------------------------------*/
+
+      #contacts{
+        display: block;
+        gap: 20px;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center ;
+        width: 100%;
+        padding: 40px;
+        border-radius: 12px;
+        background-color: var(--background);
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4) ;
+      }
+      .contacts_info{
+        height: 100%;
+        padding-top: 2rem;
+        display: flex;
+        justify-content: space-around;
+        background-color: var(--background);
+       }
+       #contacts h1{
+        background-color: var(--background);
+        display: flex;
+        font-family: 'Asap', sans-serif;
+        font-weight: 900;
+        justify-content: center;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+       }
+       .contact_box1{
+        margin: 0;
+        background: var(--background_box);
+        min-width: 200px;
+        height: 300px;
+        border-radius: 25px;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4) ;
+        padding-bottom: 2rem;
+       }
+
+       .redes{
+        background: var(--background_box);
+        min-width: 100px;
+        height: 300px;
+        border-radius: 25px;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4) ;
+       }
+      .redes h2{
+        width: 180px;
+        font-size: 20px;
+        position: relative;
+        top: -3rem;
+        left: 210px;
+      }
+       .contact_box2{
+        margin: 0;
+        background: var(--background_box);
+        width: 600px;
+        height: 300px;
+        border-radius: 25px;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
+        text-align: center;
+       }
+       .contact_box1 h2{
+        width: 180px;
+        font-size: 25px;
+        position: relative;
+        top: -3rem;
+        left: 15px;
+       }
+
+       .contact_box2 h2{
+        width: 180px;
+        font-size: 25px;
+        position: relative;
+        top: -3rem;
+        left: 210px;
+       }
+       .contact_box1 ul li,
+       .contact_box1 ul li a{
+        height: 100px;
+        gap: 1px;
+        font-display: none;
+        list-style: none;
+       }
+       
+       .contact_box1 ul a,
+       .contact_box2 ul a{
+        list-style: none;
+        text-decoration: none;
+       }
+    
+       .contact_box2 li a{
+        list-style: none;
+        font-family: 'Asap', sans-serif;
+        font-display: none;
+        }
+    
+       .contact_box1 ul li i{
+        display: flex;
+       }
+       .contact_box2 img{
+        position: relative;
+        left: 60px;
+        top: 3rem;
+       }
+       .contacts_info .redes h2{
+        position: relative;
+        top: -3rem;
+        left: 1rem;
+       }
+       .contacts_info .redes i{
+        height: 100px;
+        display: block;
+        flex-wrap: wrap;
+        font-size: 45px;
+        position: relative;
+        left: 50px;
+       }
+       .contacts_info .redes i:hover{
+       color: var(--apple3);
+       }
+    
+       /* ----------------------FOOTER--------------------------------- */
+       footer{
+        margin-top:50px;
+       }
+       .footer{
+        display: flex;
+        background-color: var(--background_box);
+        width: 100%;
+        height: 40px;
+        margin-top: 10px;
+       }
+       .footer img{
+        opacity: 0.5;
+        position: relative;
+        left: -4rem;
+       }
+       .footer h2{
+        font-size: 20px;
+        font-family: 'Asap', sans-serif;
+        text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+        position: relative;
+        left: -53rem;
+        opacity: 0.5;
+       }
