@@ -1,14 +1,14 @@
-const registroDeFormulario = document.querySelector("#registrarse")
-const nombre = document.querySelector('#nombre')
-const apellido = document.querySelector('#apellido')
-const telefono = document.querySelector('#telefono')
-const email = document.querySelector('#email')
+const registroDeFormulario = document.getElementById("#registrar")
+const nombre = document.getElementById('#nombre')
+const apellido = document.getElementById('#apellido')
+const telefono = document.getElementById('#telefono')
+const email = document.getElementById('#email')
 
-const usuarios = JSON.parse(localStorage.getItem("usuarios") || [])
+//const carrito = JSON.parse(localStorage.getItem("carrito") || [])
 
-const guardarUsuarios= ()=>{
-    localStorage.setItem('usuarios', JSON.stringify(usuaarios))
-}
+// const guardarUsuarios= ()=>{
+//     localStorage.setItem('carrito', JSON.stringify(carrito))
+// }
 
 const estaVacio =(input)=>{
     return !input.value.trim().lenght
@@ -24,7 +24,7 @@ const validarEmail = (input) =>{
 }
 
 const existeElEmail = (input) =>{
-    return usuarios.some((usuario) => usuario.email === input.value.trim())
+    return carrito.some((usuario) => usuario.email === input.value.trim())
 }
 
 const validarTelefono = (input) =>{
@@ -126,13 +126,9 @@ const validarForm = (e)=>{
     }
 }
 
-const init =()=>{
+
     registroDeFormulario.addEventListener('submit', validarForm )
     nombre.addEventListener('input', ()=>validarTxt(nombreInput))
     apellido.addEventListener('input', ()=>validarTxt(apellidoInput))
     telefono.addEventListener('input',()=>validarTelefono(telefonoInput))
     email.addEventListener('input', ()=>validarEmail(emaliInput))
-}
-init ()
-
-//ver en 1:33 el video de la clas 14
