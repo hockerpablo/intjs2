@@ -10,6 +10,7 @@ const addModal = document.querySelector('.add_modal')
 
 // seteamos el carrito
  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+ 
 
  const createProductTemplate = (productos) =>{
     const {id, name, value, cardImg, category} = productos;

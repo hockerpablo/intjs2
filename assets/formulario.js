@@ -1,59 +1,53 @@
-const registroDeFormulario = document.querySelector(".form_container")
-const nombre = document.querySelector('#nombre')
-const apellido = document.querySelector('#apellido')
-const telefono = document.querySelector('#telefono')
-const email = document.querySelector('#email')
+const registroDeFormulario = document.getElementById("registrar")
+const nombre = document.getElementById('nombre')
+const apellido = document.getElementById('apellido')
+const telefono = document.getElementById('telefono')
+const email = document.getElementById('email')
 
 
 const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-const guardarUsuarios= ()=>{
-    localStorage.setItem('usuarios', JSON.stringify(usuarios))
-}
+
 
 const estaVacio =(input)=>{
-    return !input.value.trim().lenght;
+    return !input.value.trim().length;
 }
 
 const aTraves = (input,min,max) =>{
-   return input.value.lenght >= min && input.vale.lenght < max
+   return input.value.length >= min && input.value.length < max
 }
 
 const validarEmail = (input) =>{
-     const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-     return re.test(input.value.trim())
-}
+    const re = /\S+@\S+\.\S+/;
+    return re.test(input.value.trim());
+  };
 
 const existeElEmail = (input) =>{
-    return usuarios.some((usuario) => usuario.email === input.value.trim())
-}
+    return usuarios.some((usuario) => usuario.email === input.value.trim());
+};
 
-const validarTelefono = (input) =>{
+const validarTelefono = (input) => {
     const re = /^[0-9]{10}$/;
-    return re.test(input.value.trim())
-}
+    return re.test(input.value.trim());
+  };
 
-const darUnError = (input, mensaje) => {
-    const formField = input.parentElement; 
-
-    
-    if (formField) {
-        formField.classList.remove("success");
-        const error = formField.querySelector('small');
-
-    
-        if (error) {
-            error.style.display = "block";
-            error.textContent = mensaje;
-        }
-    }
-}
-
-const mostrarSuccess = (input) =>{
-    const formField=input.parentElement;formField.classList.remove('error');formField.classList.add('success')
-    const error = formField.querySelector('small'); error.textContent=''
-}
-
+const darUnError = (input, message) => {
+    const baliza = input.parentElement;
+    baliza.classList.remove('success')
+    baliza.classList.add('error')
+    const error = baliza.querySelector('small')
+    error.style.display = 'block';
+    error.textContent = message;
+  };
+  
+  
+  const mostrarSuccess = (input) => {
+    const baliza = input.parentElement;
+    baliza.classList.remove('error');
+    baliza.classList.add('success');
+    const error = baliza.querySelector('small');
+    error.textContent = '';
+  };
 
 const validarTxt = (input)=>{
     let valid = false
@@ -67,8 +61,8 @@ const validarTxt = (input)=>{
         darUnError(input, `debe tener entre ${minCharacter} y ${maxCharacter} caracteres`)
         return;
     }
-    mostrarSuccess(input)
-    valid = true
+    mostrarSuccess(input);
+    valid = true;
     return valid;
 }
 
@@ -109,16 +103,16 @@ const revisraTelefono = (input) =>{
 }
 
 const validarForm = (e)=>{
-    e.preventdateform();
+    e.preventDefault();
 
     let validarNombre = validarTxt(nombre);
     let validarApellido = validarTxt(apellido);
-    let validarCorreo = validarEmail(email);
-    let validarTel = validarTelefono(telefono);
+    let validarCorreo = revisarEmail(email);
+    let validarTel = revisraTelefono(telefono);
 
-    let isValidForm = validarNombre 
+    let isValidForm = 
+    validarNombre 
     && validarApellido 
-    && validarCorreo 
     && validarCorreo 
     && validarTel;
 
@@ -128,14 +122,17 @@ const validarForm = (e)=>{
             nombre: nombre.value,
             apellido: apellido.value,
             email: email.value,
-            telefono: telefono.valaue,
+            telefono: telefono.value,
         })
-        saveToLocalStorage(usuarios)
+        guardarUsuarios(usuarios)
         alert('su registro fue exitoso')
 
     }
 }
 
+const guardarUsuarios= ()=>{
+    localStorage.setItem('usuarios', JSON.stringify(usuarios))
+}
         registroDeFormulario.addEventListener('submit', validarForm )
         nombre.addEventListener('input', ()=>validarTxt(nombre))
         apellido.addEventListener('input', ()=>validarTxt(apellido))
