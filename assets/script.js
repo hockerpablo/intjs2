@@ -7,6 +7,7 @@ const botonBorrar = document.querySelector('.boton_borrar')
 const carritoBubble = document.querySelector('.carrito_bubble')
 const addModal = document.querySelector('.add_modal')
 
+
 // seteamos el carrito
  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 

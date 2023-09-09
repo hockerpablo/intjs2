@@ -1,17 +1,18 @@
-const registroDeFormulario = document.getElementById("#registrar")
-const nombre = document.getElementById('#nombre')
-const apellido = document.getElementById('#apellido')
-const telefono = document.getElementById('#telefono')
-const email = document.getElementById('#email')
+const registroDeFormulario = document.querySelector(".form_container")
+const nombre = document.querySelector('#nombre')
+const apellido = document.querySelector('#apellido')
+const telefono = document.querySelector('#telefono')
+const email = document.querySelector('#email')
 
-//const carrito = JSON.parse(localStorage.getItem("carrito") || [])
 
-// const guardarUsuarios= ()=>{
-//     localStorage.setItem('carrito', JSON.stringify(carrito))
-// }
+const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+const guardarUsuarios= ()=>{
+    localStorage.setItem('usuarios', JSON.stringify(usuarios))
+}
 
 const estaVacio =(input)=>{
-    return !input.value.trim().lenght
+    return !input.value.trim().lenght;
 }
 
 const aTraves = (input,min,max) =>{
@@ -24,7 +25,7 @@ const validarEmail = (input) =>{
 }
 
 const existeElEmail = (input) =>{
-    return carrito.some((usuario) => usuario.email === input.value.trim())
+    return usuarios.some((usuario) => usuario.email === input.value.trim())
 }
 
 const validarTelefono = (input) =>{
@@ -32,12 +33,20 @@ const validarTelefono = (input) =>{
     return re.test(input.value.trim())
 }
 
-const darUnError = (input, mensaje) =>{
+const darUnError = (input, mensaje) => {
     const formField = input.parentElement; 
-    formField.classList.remove("success"); formField.classList.add("error")
-    const error = formField.querySelector('smaill')
-    error.style.display ='block'
-    error.textContent = mensaje
+
+    
+    if (formField) {
+        formField.classList.remove("success");
+        const error = formField.querySelector('small');
+
+    
+        if (error) {
+            error.style.display = "block";
+            error.textContent = mensaje;
+        }
+    }
 }
 
 const mostrarSuccess = (input) =>{
@@ -46,7 +55,7 @@ const mostrarSuccess = (input) =>{
 }
 
 
-const validarTxt = ()=>{
+const validarTxt = (input)=>{
     let valid = false
     const minCharacter = 3
     const maxCharacter = 25
@@ -100,12 +109,12 @@ const revisraTelefono = (input) =>{
 }
 
 const validarForm = (e)=>{
-    e.preventdateform()
+    e.preventdateform();
 
-    let validarNombre = validarTxt(nombreInput)
-    let validarApellido = validarTxt(apellidoInput)// ver esto depues por las dudas
-    let validarCorreo = validarEmail(emaliInput)
-    let validarTel = validarTelefono(telefonoInput)
+    let validarNombre = validarTxt(nombre);
+    let validarApellido = validarTxt(apellido);
+    let validarCorreo = validarEmail(email);
+    let validarTel = validarTelefono(telefono);
 
     let isValidForm = validarNombre 
     && validarApellido 
@@ -115,20 +124,20 @@ const validarForm = (e)=>{
 
 
     if (isValidForm){
-        user.push({
-            nombre: nombreInput.value,
-            apellido: apellidoInput.value,
-            email: emaliInput.value,
-            telefono: telefonoInput.valaue,
+        usuarios.push({
+            nombre: nombre.value,
+            apellido: apellido.value,
+            email: email.value,
+            telefono: telefono.valaue,
         })
-        localStorage(user)
+        saveToLocalStorage(usuarios)
         alert('su registro fue exitoso')
+
     }
 }
 
-
-    registroDeFormulario.addEventListener('submit', validarForm )
-    nombre.addEventListener('input', ()=>validarTxt(nombreInput))
-    apellido.addEventListener('input', ()=>validarTxt(apellidoInput))
-    telefono.addEventListener('input',()=>validarTelefono(telefonoInput))
-    email.addEventListener('input', ()=>validarEmail(emaliInput))
+        registroDeFormulario.addEventListener('submit', validarForm )
+        nombre.addEventListener('input', ()=>validarTxt(nombre))
+        apellido.addEventListener('input', ()=>validarTxt(apellido))
+        telefono.addEventListener('input',()=>validarTelefono(telefono))
+        email.addEventListener('input', ()=>validarEmail(email))
