@@ -65,14 +65,7 @@
 
       <!-------------------------------SECCION HERO -------------------------------->
       <div id="hero">
-        <div class="hero_info">
-          <h1>Somos hey_applesell</h1>
-          <p> somo het_applesell una empresa creada en hace mas de 10 años 
-            ya instalados en 3 provicias de la argentina con sede original en santa fe
-            le brindamos el mejor servicio de entrega a nuesros mas de 3 mil clientes en todo el pais 
-            siempre apostamos a la inovacion tecnogica dentro del campo de la informatica lo dicen nuesros partners.
-          </p>
-        </div>
+        
         <div class="container-slider">
             <div class="slider-izquierda">
               <img src="assets/img/slideshow/izquierda.png" alt="">
@@ -85,6 +78,24 @@
             </div>
             
         </div>
+      </div>
+
+
+      <div id="about_us">
+        <h1>Somos hey_applesell</h1>
+        <p> somo het_applesell una empresa creada en hace mas de 10 años 
+          ya instalados en 3 provicias de la argentina con sede original en santa fe
+          le brindamos el mejor servicio de entrega a nuesros mas de 3 mil clientes en todo el pais 
+          siempre apostamos a la inovacion tecnogica dentro del campo de la informatica lo dicen nuesros partners.
+        </p>
+        <div class="imgs">
+          <img src="assets/img/partners/1.png" alt="">
+        <img src="assets/img/partners/2.png" alt="">
+        <img src="assets/img/partners/3.png" alt="">
+        <img src="assets/img/partners/4.png" alt="">
+        <img src="assets/img/partners/5.png" alt="">
+        </div>
+
       </div>
 
       <!---------------------SECCION PRODUCTOS -------------------------->
@@ -105,12 +116,13 @@
 
           <div class="contenedor_productos">
             
-          
+            
            </div>
 
            <button class="boton_cargar"> Ver +</button>
+           <div class="add_modal"></div>
       </section>
-      <div class="add_modal"></div>
+      
     </main>
     <section id="contacts">
       <h1> Nuestros Contactos </h1>
@@ -124,35 +136,38 @@
       </ul>
   </div>
   <div class="contact_box2">
-      <h2>Tu Cuenta</h2>
+      <h2>Registrate</h2>
       <div class="content_form">
 
        <form  class="form_container" id="registrar" >
-        
-        <!---nombre-->
+       
+        <div class="inputs">
+          <!---nombre-->
         <div class="baliza">
           <input type="text" placeholder="Nombre" class="form_input_name" id="nombre" />
-        <small></small>
+          <small></small>
+          </div>
+          
+         <!-- apellido-->
+         <div class="baliza"> 
+          <input type="text" placeholder="Apellido" class="form_input_apellido" id="apellido" />
+          <small></small>
         </div>
-        
-       <!-- apellido-->
-       <div class="baliza">
-        <input type="text" placeholder="Apellido" class="form_input_apellido" id="apellido" />
-        <small></small>
-      </div>
-        
-      <!--numero de telefono-->
-      <div class="baliza">
-        <input type="text" placeholder="Telefono" class="form_input_telefono" id="telefono" />
-        <small></small>
-      </div>
-        
-      <!-- email -->
-      <div class="baliza">
-        <input type="email" placeholder="Correo" class="form_input_email" id="email" />
-        <small></small>
-      </div>
-      <input type="submit" class="form__submit__btn" value="registrarse"/>
+          
+        <!--numero de telefono-->
+        <div class="baliza">
+          <input type="text" placeholder="Telefono" class="form_input_telefono" id="telefono" />
+          <small></small>
+        </div>
+          
+        <!-- email -->
+        <div class="baliza">
+          <input type="email" placeholder="Correo" class="form_input_email" id="email" />
+          <small></small>
+        </div>
+        <input type="submit" class="form__submit__btn" value="registrarse"/>
+        </div>
+      
        </form>
 
       </div>

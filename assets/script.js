@@ -18,7 +18,7 @@ const addModal = document.querySelector('.add_modal')
     <div class="products">
               <img src='${cardImg}' alt="">
               <h3>${name}</h3>
-              <span>PRECIO</span>
+              <span>PRECIO: </span>
               <span>${value}</span>
               <button class="boton_comprar" 
               data-category="${category}"
@@ -51,8 +51,6 @@ const verMasProductos = () =>{
     }
 }
 
-// ocultar o mostrar boton ver mas
-
 const setShowMoreVisibility = () =>{
     
     if (!appState.activeFilter){
@@ -81,7 +79,7 @@ const createCartProductTemplate = (productosCarrito) =>{
     </div>
   </div>`;
 }
-// funcion para renderizar los productos del carrito 
+//render
 
 const renderCart = () => {
     
@@ -93,27 +91,21 @@ const renderCart = () => {
 
 }
 
-// funcion para obtener el total de la compra
-
 const totalDeLacompra = () =>{
     
     return carrito.reduce((cantidad, valor ) => 
     cantidad + Number(valor.value) * valor.quantity, 0)
 }
 
-// funcion para mostrar el total
-
 const mostrarTotal = () =>{
     total.innerHTML = `${totalDeLacompra().toFixed(2)} Pesos`
 }
-
-// funcion para ver la burbujita con la cantidad de productos
 
 const renderCartBubble = () =>{
     carritoBubble.textContent = carrito.reduce((cantidad, valor) => cantidad + valor.quantity, 0)
 }
 
-// funcion para habilitar o desabilitar un boton segun corresponda
+
 
 const disableBtn = (boton) =>{
     
@@ -124,14 +116,11 @@ const disableBtn = (boton) =>{
     }
 }
 
-// funcion para guardar el carrito en el local storage
+
 
 const guardarCarrito = () =>{
     localStorage.setItem ("carrito", JSON.stringify(carrito))
 }
-
-
-// funcion para modificar el estado del carrito
 
 const updateCartState = () =>{
     guardarCarrito()
@@ -243,34 +232,32 @@ const handleQuantity = (e) =>{
     updateCartState()
 }
 
-//funcion para vaciar el carrito
 
 const resetCartItems = () =>{
     carrito = []
   updateCartState()
 }
 
-//funcion para completar la compra o vaciar el carrito
 
-const completeCartAction = (confirmMsg, successMsg) =>{
+
+const completeCartAction = (confirmarMensaje, successMensaje) =>{
     
     if(!carrito.length) 
     
     return;
     
-    if(window.confirm(confirmMsg)){
+    if(window.confirm(confirmarMensaje)){
     resetCartItems()
-    alert(successMsg)
+    alert(successMensaje)
  }
 }
 
-//funcion disparar un mensaje de compra exitosa
+
 
 const completeBuy = () =>{
     completeCartAction("desea completar su compra?", "¡gracias por su compra!")
 }
 
-//funcion para disparar el mesanje de borra los items del carrito
 
 const deleteCart = () =>{
     completeCartAction("desea vaciar el carrito?", "¡no hay productos en el carrito!")

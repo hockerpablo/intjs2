@@ -36,7 +36,7 @@ const darUnError = (input, message) => {
     baliza.classList.remove('success')
     baliza.classList.add('error')
     const error = baliza.querySelector('small')
-    error.style.display = 'block';
+    error.style.display = "flex";
     error.textContent = message;
   };
   
