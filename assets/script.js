@@ -29,8 +29,9 @@ const addModal = document.querySelector('.add_modal')
             </div>`;
  };
 // aca estamos trabajando dentro del products container
- const renderProducts = (productsList) =>{productosCont.innerHTML += productsList.map(createProductTemplate) .join('');
- };
+ const renderProducts = (productsList) =>{productosCont.innerHTML += 
+    productsList.map(createProductTemplate) .join('');
+};
 
 
  // ver mas
