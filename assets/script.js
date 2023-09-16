@@ -5,7 +5,7 @@ const botonVerMas = document.querySelector('.boton_cargar')
 const botonComprar = document.querySelector('.boton_comprar')
 const botonBorrar = document.querySelector('.boton_borrar')
 const carritoBubble = document.querySelector('.carrito_bubble')
-const addModal = document.querySelector('.add_modal')
+const agregarmodal = document.querySelector('.add_modal')
 
 
 // seteamos el carrito
@@ -13,18 +13,18 @@ const addModal = document.querySelector('.add_modal')
  
 
  const createProductTemplate = (productos) =>{
-    const {id, name, value, cardImg, category} = productos;
+    const {id, name, price, cardImg, category} = productos;
     return `
     <div class="products">
               <img src='${cardImg}' alt="">
               <h3>${name}</h3>
-              <span>PRECIO: </span>
-              <span>${value}</span>
+              <span>PRECIO: US$</span>
+              <span>${price}</span>
               <button class="boton_comprar" 
               data-category="${category}"
               data-id="${id}" 
               data-name="${name}" 
-              data-value="${value}" 
+              data-price="${price}" 
               data-img="${cardImg}">Comprar</button>
             </div>`;
  };
@@ -64,15 +64,16 @@ const setShowMoreVisibility = () =>{
 // logica del carrito
 
 const createCartProductTemplate = (productosCarrito) =>{
-    const {id, name, value, img, quantity} = productosCarrito;
+    const {id, name, price, img, quantity} = productosCarrito;
     return`<div class="item_carrito">
     <img src='${img}' alt="carrito" />
     <div class="item-info">
       <h3 class="item-titulo">${name}</h3>
-      <p class="item-bid">el precio es</p>
-      <span class="item-precio"> $ ${value} </span>
+      <p class="item-price">el precio es</p>
+      <span class="item-precio"> US$ ${price}</span>
     </div>
     <div class="item-handler">
+      <p class="quantity">cantidad</p>
       <span class="quantity-handler down" data-id=${id}>-</span>
       <span class="item-quantity">${quantity}</span>
       <span class="quantity-handler up" data-id=${id}>+</span>
@@ -95,11 +96,11 @@ const renderCart = () => {
 const totalDeLacompra = () =>{
     
     return carrito.reduce((cantidad, valor ) => 
-    cantidad + Number(valor.value) * valor.quantity, 0)
+    cantidad + Number(valor.price) * valor.quantity, 0) 
 }
 
 const mostrarTotal = () =>{
-    total.innerHTML = `${totalDeLacompra().toFixed(2)} Pesos`
+    total.innerHTML = `${totalDeLacompra().toFixed(2)} Dolares`
 }
 
 const renderCartBubble = () =>{
@@ -135,9 +136,9 @@ const updateCartState = () =>{
 
 
 
-const createProductData = ({id, name, value, img}) => { //revisar esto la proxima
+const createProductData = ({id, name, price, img}) => { 
     
-    return{id, name, value, img};
+    return{id, name, price, img};
 };
 
 
@@ -160,12 +161,15 @@ const createCartPorduct = (product) => {
 
 
 const mostrarModal = (mensaje) =>{
-    addModal.classList.add('activar_modal');
-    addModal.textContent = mensaje
-    setTimeout(() =>{
-        addModal.classList.remove(('activar_modal'))
-    }, 1500)
-}
+    agregarmodal.classList.add('activar_modal');
+    agregarmodal.textContent = mensaje
+setTimeout(()=>{
+    agregarmodal.classList.remove("activar_modal")
+}, 1000)
+
+} 
+
+
 
 const agregarAlCarrito = (e) =>{
     
